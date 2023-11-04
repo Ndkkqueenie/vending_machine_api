@@ -1,7 +1,9 @@
-POST http://localhost:3001/api/products
+POST https://wild-frost-1903.fly.dev/api/products
 Content-Type: application/json
 
 {
-    "content": "Apple Sauce",
-    "important": true
+    "amountAvailable": 10,
+    "cost": 4.89,
+    "productName": "Cheese Cake",
+    "sellerId": 6
 }
