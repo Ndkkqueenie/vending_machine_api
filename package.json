@@ -1,0 +1,30 @@
+{
+  "name": "vending_machine_api",
+  "version": "1.0.0",
+  "description": "An API for a vending machine, allowing users with a “seller” role to add, update or remove products, while users with a “buyer” role can deposit coins into the machine and make purchases.",
+  "main": "server.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "morgan": "^1.10.0",
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "mongoose": "^8.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ndkkqueenie/vending_machine_api.git"
+  },
+  "author": "Queendalin O. Ezenwa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ndkkqueenie/vending_machine_api/issues"
+  },
+  "homepage": "https://github.com/Ndkkqueenie/vending_machine_api#readme",
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
