@@ -1,93 +1,109 @@
-const express = require('express')
-const app = express()
+require('dotenv').config();
+const express = require('express');
+const mongoose = require('mongoose');
+const Product = require('./models/product'); // Import your Product model
 
+const app = express();
 const requestLogger = (request, response, next) => {
-  console.log('Method:', request.method)
-  console.log('Path:  ', request.path)
-  console.log('Body:  ', request.body)
-  console.log('---')
-  next()
-}
+  console.log('Method:', request.method);
+  console.log('Path:  ', request.path);
+  console.log('Body:  ', request.body);
+  console.log('---');
+  next();
+};
 
 const unknownEndpoint = (request, response) => {
-  response.status(404).send({ error: 'unknown endpoint' })
-}
+  response.status(404).send({ error: 'unknown endpoint' });
+};
 
-app.use(express.json())
-app.use(requestLogger)
+app.use(express.json());
+app.use(requestLogger);
 
-let products = [
-  {
-    id: 1,
-    content: "Coca Cola",
-    important: true
-  },
-  {
-    id: 2,
-    content: "Cheese Hambuger",
-    important: false
-  },
-  {
-    id: 3,
-    content: "Nutella Biscuit",
-    important: true
+// Role-based access control middleware
+const sellerAuth = (req, res, next) => {
+  // Check the user's role based on your authentication mechanism.
+  // For example, if you are using JWT tokens with a "role" claim, you can access it like this:
+  const token = req.header('Authorization');
+  if (token) {
+    const decoded = jwt.verify(token, 'your-secret-key'); // Use your actual secret key
+    if (decoded.role === 'seller') {
+      next(); // Allow access for sellers
+    } else {
+      res.status(403).json({ error: 'Access denied' });
+    }
+  } else {
+    res.status(401).json({ error: 'Authentication required' });
   }
-]
+};
 
 app.get('/', (request, response) => {
-  response.send('<h1>Hello World!</h1>')
-})
+  response.send('<h1>Hello World!</h1>');
+});
 
-app.get('/api/products', (request, response) => {
-  response.json(products)
-})
+// List all products (accessible to anyone)
+app.get('/api/products', async (request, response) => {
+  const products = await Product.find();
+  response.json(products);
+});
 
-app.get('/api/products/:id', (request, response) => {
-  const id = Number(request.params.id)
-  const product = products.find(product => product.id === id)
-  if (product) {
-    response.json(product)
-  } else {
-    response.status(404).end()
+// Retrieve product details
+app.get('/api/product/:id', async (request, response) => {
+  const id = request.params.id;
+  try {
+    const product = await Product.findById(id);
+    if (product) {
+      response.json(product);
+    } else {
+      response.status(404).end();
+    }
+  } catch (error) {
+    response.status(500).json({ error: 'Server error' });
   }
-})
+});
 
-const generateId = () => {
-  const maxId = products.length > 0
-    ? Math.max(...products.map(n => n.id))
-    : 0
-  return maxId + 1
-}
-
-app.post('/api/products', (request, response) => {
-  const body = request.body
-
-  if (!body.content) {
-    return response.status(400).json({ 
-      error: 'content missing' 
-    })
+// Create a new product (seller role required)
+app.post('/api/products', sellerAuth, async (request, response) => {
+  const { amountAvailable, cost, productName, sellerId } = request.body;
+  try {
+    const product = new Product({ amountAvailable, cost, productName, sellerId });
+    await product.save();
+    response.status(201).json(product);
+  } catch (error) {
+    response.status(400).json({ error: 'Bad Request' });
   }
+});
 
-  const product = {
-    content: body.content,
-    important: body.important || false,
-    id: generateId(),
+// Update product information (seller role required)
+app.put('/api/product/:id', sellerAuth, async (request, response) => {
+  const id = request.params.id;
+  try {
+    const updatedProduct = await Product.findByIdAndUpdate(id, request.body, {
+      new: true,
+    });
+    if (updatedProduct) {
+      response.json(updatedProduct);
+    } else {
+      response.status(404).end();
+    }
+  } catch (error) {
+    response.status(400).json({ error: 'Bad Request' });
   }
+});
 
-  products = products.concat(product)
+// Delete a product (seller role required)
+app.delete('/api/product/:id', sellerAuth, async (request, response) => {
+  const id = request.params.id;
+  try {
+    await Product.findByIdAndRemove(id);
+    response.status(204).end();
+  } catch (error) {
+    response.status(400).json({ error: 'Bad Request' });
+  }
+});
 
-  response.json(product)
-})
+app.use(unknownEndpoint);
 
-app.delete('/api/products/:id', (request, response) => {
-  const id = Number(request.params.id)
-  products =products.filter(product => product.id !== id)
-
-  response.status(204).end()
-})
-
-app.use(unknownEndpoint)
-
-const PORT = 3001
-app.listen(PORT)
-console.log(`Server running on port ${PORT}`)
+const PORT = process.env.PORT || 3001
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
