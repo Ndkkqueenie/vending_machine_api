@@ -5,7 +5,7 @@ const User = require('../models/user');
 // List all users (accessible to anyone)
 usersRouter.get('/', async (request, response) => {
   try {
-    const users = await User.find({});
+    const users = await User.find({}).populate('products');
     response.json(users);
   } catch (error) {
     response.status(500).json({ error: 'Internal Server Error' });

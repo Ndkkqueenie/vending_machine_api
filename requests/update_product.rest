@@ -1,10 +1,11 @@
-POST http://localhost:3001/api/products
+PUT http://localhost:3001/api/products/6546d7ca5022e405ff6858f1
 Content-Type: application/json
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlF1ZWVuaWUiLCJpZCI6IjY1NDc3MTZjYzhiZWIyMDQ2YzExNTM4ZSIsInJvbGUiOiJzZWxsZXIiLCJpYXQiOjE2OTkxODEyMDF9.W6_yxZl0n8ApyADi9IUDtDmfYQ9aMuYiUZAO22lQh4M
 
 {
-    "amountAvailable": 16,
-    "cost": 3.89,
-    "productName": "Chocolate Cookies",
-    "sellerId": "6547ac317c65c681a3d911a8"
+    "amountAvailable": 18,
+    "cost": 5.99,
+    "productName": "Lemon Cake",
+    "sellerId": "6547716cc8beb2046c11538e",
+    "id": "6546d7ca5022e405ff6858f1"
 }

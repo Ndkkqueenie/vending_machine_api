@@ -4,6 +4,7 @@ const app = express()
 const logger = require('./utils/logger')
 const mongoose = require('mongoose')
 
+const sellerRouter = require('./controllers/seller')
 const productsRouter = require('./controllers/products')
 const usersRouter = require('./controllers/users')
 const middleware = require('./utils/middleware')
@@ -23,6 +24,7 @@ mongoose.connect(config.MONGODB_URI)
 app.use(express.json())
 app.use(middleware.requestLogger)
 
+app.use('/api/seller', sellerRouter)
 app.use('/api/products', productsRouter)
 app.use('/api/users', usersRouter)
 
