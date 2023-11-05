@@ -16,7 +16,7 @@ const productSchema = new mongoose.Schema({
   sellerId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User', // Reference to the User model for seller information
-    required: false,
+    required: true,
   },
 });
 

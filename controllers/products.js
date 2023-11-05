@@ -1,5 +1,6 @@
-const productsRouter = require('express').Router()
+const productsRouter = require('express').Router();
 const Product = require('../models/product'); // Import your Product model
+const User = require('../models/user');
 
 // Role-based access control middleware
 const sellerAuth = (req, res, next) => {
@@ -42,7 +43,14 @@ productsRouter.get('/:id', async (request, response) => {
 // Create a new product (seller role required)
 productsRouter.post('/', sellerAuth, async (request, response) => {
   const { amountAvailable, cost, productName, sellerId } = request.body;
+
   try {
+    // Ensure that the sellerId is a valid user ID with the "seller" role
+    const isSeller = await User.exists({ _id: sellerId, role: 'seller' });
+    if (!isSeller) {
+      return response.status(400).json({ error: 'Invalid seller ID' });
+    }
+
     const product = new Product({ amountAvailable, cost, productName, sellerId });
     await product.save();
     response.status(201).json(product);
@@ -79,4 +87,4 @@ productsRouter.delete('/:id', sellerAuth, async (request, response) => {
   }
 });
 
-module.exports = productsRouter
+module.exports = productsRouter;
