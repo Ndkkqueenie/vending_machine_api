@@ -1,0 +1,45 @@
+/* Home.css */
+
+.home-container {
+  background-image: url('../../assets/vendingMachineImg.jpeg'); /* Replace with your image URL */
+  background-size: cover;
+  background-position: center;
+  height: 100vh; /* Adjust the height as needed */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff; /* Text color */
+  text-align: center;
+}
+
+.home-content {
+  background-color: rgba(0, 0, 0, 0.6); /* Background overlay color */
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.navbar {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 0;
+}
+
+.navbar-brand {
+  font-size: 24px;
+}
+
+.navbar-nav {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+}
+
+.nav-item {
+  font-size: 18px;
+}
+
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+}
