@@ -1,0 +1,22 @@
+/* Dashboard.css */
+
+.dashboard-container {
+  display: grid;
+  grid-template-columns: 60% 38%; /* Define the column widths */
+  gap: 1rem; /* Add some spacing between the columns */
+  padding: 1rem; /* Add spacing on all sides of the container */
+}
+
+.product-list,
+.selected-items {
+  padding: 1rem;
+  background-color: #f5f5f5; /* Set background color as needed */
+  border: 1px solid #ddd; /* Add border or styling as needed */
+}
+
+@media (max-width: 768px) {
+  /* Media query for responsive layout on smaller devices */
+  .dashboard-container {
+    grid-template-columns: 1fr; /* Switch to a single column layout */
+  }
+}

@@ -1,20 +1,21 @@
-import React from 'react';
+import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { UserProvider, Register, Login, Home } from './components';
+import { Register, Login, Home, Dashboard } from './components';
 
 const App = () => {
   return (
-    <UserProvider>
+    <div>
       <Router>
         <div className="App">
           <Routes>
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/" element={<Home />} />
           </Routes>
         </div>
       </Router>
-    </UserProvider>
+    </div>
   );
 };
 

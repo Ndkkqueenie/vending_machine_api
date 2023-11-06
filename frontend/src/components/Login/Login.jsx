@@ -1,53 +1,70 @@
 import React, { useState } from 'react';
-import { useUser } from '../index';
-import './Login.css';
+import { Link, useNavigate } from 'react-router-dom';
+import { Typography } from '@mui/material';
+import loginService from '../../services/login';
+import { Notification } from '../index';
+import './Login.css'; // Import the Login.css file
 
 const Login = () => {
-  const { dispatch } = useUser();
-  const [formData, setFormData] = useState({ username: '', password: '' });
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [user, setUser] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
 
-  const handleLogin = async () => {
-    // Implement your login logic here
+  const history = useNavigate();
+
+  const handleLogin = async (event) => {
+    event.preventDefault();
     try {
-      const response = await fetch('/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+      const user = await loginService.login({
+        username,
+        password,
       });
 
-      if (response.ok) {
-        const user = await response.json();
-        console.log(user)
-        dispatch({ type: 'LOGIN', payload: user });
-      } else {
-        // Handle login error
-        console.error('Login failed');
-      }
-    } catch (error) {
-      console.error('Login error', error);
+      history('/dashboard'); // Use history instead of history.push
+
+      setUser(user);
+      setUsername('');
+      setPassword('');
+    } catch (exception) {
+      setErrorMessage('Wrong credentials');
+      setTimeout(() => {
+        setErrorMessage(null);
+      }, 5000);
     }
   };
 
   return (
     <div className="login-container">
       <div className="login-form">
-        <h2>Login</h2>
-        <input
-          type="text"
-          placeholder="Username"
-          value={formData.username}
-          onChange={(e) => setFormData({ ...formData, username: e.target.value })}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-        />
-        <button onClick={handleLogin} className='login-button'>Login</button>
+        <form onSubmit={handleLogin}>
+          <h2>Login</h2>
+          <input
+            type="text"
+            placeholder="Username"
+            name="username"
+            value={username}
+            onChange={({ target }) => setUsername(target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            name="password"
+            value={password}
+            onChange={({ target }) => setPassword(target.value)}
+          />
+          <button className='login-button'>Login</button>
+          <Link to="/register">
+            <Typography align="center">Don't have an account? Register here</Typography>
+          </Link>
+        </form>
       </div>
+      <Notification message={errorMessage} />
+      {user && (
+        <div>
+          <p>{user.username} logged in</p>
+        </div>
+      )}
     </div>
   );
 };

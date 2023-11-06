@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useUser } from '../index';
+import { useUser } from '../../context/UserContext/UserContext';
 import './Register.css';
 
 const Register = () => {

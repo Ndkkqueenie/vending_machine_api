@@ -1,4 +1,7 @@
-export { default as Register } from './/Register/Register';
+export { default as Register } from './Register/Register';
 export { default as Login } from './Login/Login';
 export { default as Home } from './Home/Home';
-export { UserProvider, useUser } from './UserContext/UserContext';
+export { default as Notification } from './Notification/Notification';
+export { default as Dashboard } from './Dashboard/Dashboard';
+export{ default as Product } from './Product/Product';
+export{ default as SelectedItems } from './Product/SelectedItems';
