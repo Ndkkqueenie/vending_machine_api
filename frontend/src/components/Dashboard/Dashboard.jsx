@@ -82,7 +82,6 @@ const Dashboard = () => {
   
     createAmount(data)
       .then((newDepositData) => {
-        // Assuming that the response structure is as expected
         const newDeposit = newDepositData.newDeposit;
         
         setUser({ ...user, deposit: newDeposit });

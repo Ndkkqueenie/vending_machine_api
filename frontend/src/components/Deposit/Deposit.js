@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const Deposit = ({ user, onDeposit }) => {
-  const [coin, setCoin] = useState(); // Changed state variable name to "coin" from "coins"
+  const [coin, setCoin] = useState();
   const [error, setError] = useState('');
 
   const handleDeposit = () => {
