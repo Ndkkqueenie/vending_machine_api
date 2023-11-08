@@ -77,16 +77,16 @@ Authorization: Bearer <your_token>
 
 ### User management CRUD:
 
-POST /user - User registration (no authentication required).
-GET /users - List all users.
-GET /user/{userId} - Retrieve user details.
-PUT /user/{userId} - Update user information.
-DELETE /user/{userId} - Delete a user.
+- POST /user - User registration (no authentication required).
+- GET /users - List all users.
+- GET /user/{userId} - Retrieve user details.
+- PUT /user/{userId} - Update user information.
+- DELETE /user/{userId} - Delete a user.
 
 ### Product management:
 
-GET /products - List all products (accessible to loggedin users).
-POST /products - Create a new product (seller role required).
-GET /product/{productId} - Retrieve product details.
-PUT /product/{productId} - Update product information (seller role required).
-DELETE /product/{productId} - Delete a product (seller role required).
+- GET /products - List all products (accessible to loggedin users).
+- POST /products - Create a new product (seller role required).
+- GET /product/{productId} - Retrieve product details.
+- PUT /product/{productId} - Update product information (seller role required).
+- DELETE /product/{productId} - Delete a product (seller role required).
