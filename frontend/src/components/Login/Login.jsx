@@ -21,7 +21,7 @@ const Login = () => {
         password,
       });
 
-      history('/dashboard'); // Use history instead of history.push
+      history(`/dashboard/${username}`); // Use history instead
 
       setUser(user);
       setUsername('');

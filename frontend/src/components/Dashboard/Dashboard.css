@@ -1,10 +1,19 @@
 /* Dashboard.css */
 
 .dashboard-container {
+  padding: 1rem; /* Add spacing on all sides of the container */
+}
+
+.product-section {
   display: grid;
   grid-template-columns: 60% 38%; /* Define the column widths */
   gap: 1rem; /* Add some spacing between the columns */
-  padding: 1rem; /* Add spacing on all sides of the container */
+}
+
+.balance-section {
+  display: grid;
+  grid-template-columns: 40% 40%; /* Define the column widths */
+  gap: 1rem; /* Add some spacing between the columns */
 }
 
 .product-list,
