@@ -1,0 +1,8 @@
+POST http://localhost:3005/api/buy
+Content-Type: application/json
+
+{
+  "username": "Ezenwa",
+  "productId": "6546d7ca5022e405ff6858f1",
+  "quantity": 2
+}

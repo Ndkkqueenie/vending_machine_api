@@ -1,0 +1,7 @@
+POST http://localhost:3005/api/deposit
+Content-Type: application/json
+
+{
+  "username": "Ezenwa",
+  "coin": 5
+}

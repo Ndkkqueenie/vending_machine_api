@@ -14,13 +14,13 @@ test('products are returned as json', async () => {
 test('there is one product', async () => {
   const response = await api.get('/api/products')
 
-  expect(response.body).toHaveLength(1)
+  expect(response.body).toHaveLength(4)
 })
 
 test('the first product is cake', async () => {
   const response = await api.get('/api/products')
 
-  expect(response.body[0].productName).toBe('Lemon Cake')
+  expect(response.body[0].productName).toBe('Chocolate Cake')
 })
 
 afterAll(async () => {

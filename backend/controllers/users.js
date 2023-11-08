@@ -40,10 +40,10 @@ usersRouter.post('/', async (request, response) => {
 });
 
 // Retrieve user details
-usersRouter.get('/:userId', async (request, response) => {
-  const userId = request.params.userId;
+usersRouter.get('/:username', async (request, response) => {
+  const username = request.params.username;
   try {
-    const user = await User.findById(userId);
+    const user = await User.findOne({ username: username }); // Use findOne to find the user by username
     if (user) {
       response.json(user);
     } else {

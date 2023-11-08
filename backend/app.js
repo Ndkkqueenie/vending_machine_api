@@ -9,6 +9,8 @@ const loginRouter = require('./controllers/login')
 const sellerRouter = require('./controllers/seller')
 const productsRouter = require('./controllers/products')
 const usersRouter = require('./controllers/users')
+const depositRouter = require('./controllers/deposit')
+const purchaseRouter = require('./controllers/purchase')
 const middleware = require('./utils/middleware')
 
 mongoose.set('strictQuery', false)
@@ -32,6 +34,8 @@ app.use('/api/login', loginRouter)
 app.use('/api/seller', sellerRouter)
 app.use('/api/products', productsRouter)
 app.use('/api/users', usersRouter)
+app.use('/api/deposit', depositRouter)
+app.use('/api/buy', purchaseRouter)
 
 app.use(middleware.unknownEndpoint)
 

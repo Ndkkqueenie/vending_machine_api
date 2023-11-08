@@ -1,8 +1,8 @@
-POST http://localhost:3001/api/seller
+POST http://localhost:3005/api/seller
 Content-Type: application/json
 
 {
-    "username": "TesterYou",
-    "password": "Tester10",
+    "username": "Queenie",
+    "password": "Ndkqueenie",
     "role": "seller"
 }

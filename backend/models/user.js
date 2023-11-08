@@ -5,15 +5,15 @@ const userSchema = mongoose.Schema({
   username: {
     type: String,
     required: true,
-    minlength: 3,
     unique: true,
   },
   passwordHash: {
     type: String,
-    required: true,
+    required: true 
   },
   deposit: {
     type: Number,
+    required: true,
     default: 0,
   },
   role: {
@@ -24,7 +24,7 @@ const userSchema = mongoose.Schema({
   products: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Product' // Assuming your model for products is named 'Product'
+      ref: 'Product'
     }
   ],
 });
