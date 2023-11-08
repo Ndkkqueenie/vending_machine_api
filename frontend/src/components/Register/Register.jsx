@@ -7,7 +7,6 @@ const Register = () => {
   const [formData, setFormData] = useState({ username: '', password: '', role: 'buyer' });
 
   const handleRegister = async () => {
-    // Implement your registration logic here
     try {
       const response = await fetch('/api/users', {
         method: 'POST',

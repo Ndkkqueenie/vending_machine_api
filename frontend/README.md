@@ -1,70 +1,55 @@
-# Getting Started with Create React App
+Project Description
+This project was made to simulate on how vending machine works. We have two application frontend and backend. Frontend is made with React & Redux saga. Meanwhile backend is made using Nodejs typescript framework Nestjs. See Live demo here.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Run application with docker
+To run application with docker we have docker-compose.yml file in root of this project. This configuration is only for development purpose. Before running application be sure to checkout docker-compose.yml and review volumes attached in services.
 
-## Available Scripts
+In Mongodb service named db_mongo_service we have attached /data/db of host machine make sure its is accessible to docker otherwise feel free to attach your own custom directory.
 
-In the project directory, you can run:
+In backend config I've added default configuration from docker-compose.yml for development so you don't need to change anything but if you made any changes on docker-compose.yml be sure to update backend configuration too.
 
-### `npm start`
+Make sure docker and docker-compose is configured in your machine.
+Run following command
+docker-compose build
+docker-compose up -d
+Prerequisite without docker
+To run it without using docker you need to have following installed:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Backend
+You need to install npx command globally for seeders.
+npm install -g npx
+You have to have mongodb up and running for database follow this link if you haven't.
+Run backend project
+Change directory to backend and install required packages:
+cd backend
+yarn i
+Install dependencies
+yarn i
+In backend there is config folder there are configuration related to application database and others. Be sure to change them according to your running environment.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Seed data for vending machine and its product:
 
-### `npm test`
+npx nestjs-command seed:vend
+npx nestjs-command seed:product
+Now you can run you application. To run it in dev mode:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+yarn start:dev
+To run your backend test in development mode:
 
-### `npm run build`
+yarn test:watch
+If everything goes well and you have set your backend default running port as 7777, you can visit your application through http://localhost:7777
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To view swagger documentation visit http://localhost:7777/api
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Run Frontend App
+Change directory to frontend application:
+cd frontend
+Install dependencies
+yarn i
+Set up environment. Copy .env.example to create new .env file and add backend base url to env key. For Example:
+cp .env.example .env
+In .env file add:
+    REACT_APP_API_BASE_URI=http://localhost:7777
+Run your application:
+yarn start
+If everything goes well, you can visit your application through http://localhost:3000
