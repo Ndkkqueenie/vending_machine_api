@@ -6,12 +6,12 @@ This documentation provides details on the endpoints and functionality of the Ve
 
 ## Base URL
 
-All endpoints in this API are relative to the base URL: https://wild-frost-1903.fly.dev/
+All endpoints in this API are relative to the base URL: https://autumn-tree-5881.fly.dev
 
 
 ## Authentication
 
-This API requires authentication to access certain endpoints. The authentication mechanism uses JSON Web Tokens (JWT). To get an authentication token, you need to register and log in as a user. Once logged in, you will receive a token that you should include in the `Authorization` header as follows:
+This API requires authentication to access certain endpoints **marked as seller role required**. The authentication mechanism uses JSON Web Tokens (JWT). To get an authentication token, you need to register and log in as a user. Once logged in, you will receive a token that you should include in the `Authorization` header as follows:
 
 Authorization: Bearer <your_token>
 
