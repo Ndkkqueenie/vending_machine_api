@@ -19,7 +19,7 @@ const Product = ({ addSelectedProduct }) => {
             <div key={product.id} className="product-card">
               <h3>{product.productName}</h3>
               <p>Amount Available: {product.amountAvailable}</p>
-              <p>Price: ${product.cost}</p>
+              <p>Price: €{product.cost}</p>
               <button onClick={() => addSelectedProduct(product)}>Select</button>
             </div>
           ))}

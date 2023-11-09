@@ -21,6 +21,10 @@ const Login = () => {
         password,
       });
 
+      window.localStorage.setItem(
+        'loggedappUser', JSON.stringify(user)
+      )
+
       history(`/dashboard/${username}`); // Use history instead
 
       setUser(user);

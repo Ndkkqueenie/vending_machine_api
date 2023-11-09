@@ -7,3 +7,4 @@ export{ default as Product } from './Product/Product';
 export{ default as SelectedItems } from './Product/SelectedItems';
 export{ default as Deposit } from './Deposit/Deposit';
 export{ default as Balance } from './Deposit/Balance';
+export{ default as Order} from './Order/Order';

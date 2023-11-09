@@ -12,12 +12,20 @@
 
 .balance-section {
   display: grid;
-  grid-template-columns: 40% 40%; /* Define the column widths */
+  grid-template-columns: 60% 38%; /* Define the column widths */
   gap: 1rem; /* Add some spacing between the columns */
+  padding-top: 1rem;
 }
 
 .product-list,
 .selected-items {
+  padding: 1rem;
+  background-color: #f5f5f5; /* Set background color as needed */
+  border: 1px solid #ddd; /* Add border or styling as needed */
+}
+
+.deposit-space,
+.balance-space {
   padding: 1rem;
   background-color: #f5f5f5; /* Set background color as needed */
   border: 1px solid #ddd; /* Add border or styling as needed */
